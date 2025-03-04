@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SA Dashboard</title>
+</head>
+<body>
+    <h1>Welcome, Super Admin</h1>
+    <p>This is the SA Dashboard.</p>
+    <a href="{% url 'logout' %}">Logout</a>
+    <h2>Property Owners</h2>
+
+<!-- Add User Form -->
+<form id="add-user-form">
+    <input type="text" id="username" name="username" placeholder="Username" required>
+    <input type="email" id="email" name="email" placeholder="Email" required>
+    <input type="password" id="password" name="password" placeholder="Password" required>
+    <button type="submit">Add</button>
+</form>
+
+<!-- Success Message -->
+<p id="message" style="color: green;"></p>
+
+<!-- Table to Display Property Owners -->
+<table border="1">
+    <tr>
+        <th>Username</th>
+        <th>Email</th>
+    </tr>
+    {% for owner in property_owners %}
+    <tr>
+        <td>{{ owner.username }}</td>
+        <td>{{ owner.email }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<!-- JavaScript to Handle Form Submission Dynamically -->
+<script>
+document.getElementById("add-user-form").addEventListener("submit", function(event) {
+    event.preventDefault();  // Prevent default form submission
+
+    let formData = new FormData(this);
+
+    fetch("{% url 'add_property_owner' %}", {
+        method: "POST",
+        body: formData,
+        headers: {
+            "X-CSRFToken": "{{ csrf_token }}"  // Include CSRF token
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.message) {
+            document.getElementById("message").innerText = data.message;
+
+            // Add the new user to the table dynamically
+            let table = document.querySelector("table");
+            let newRow = table.insertRow(-1);
+            let cell1 = newRow.insertCell(0);
+            let cell2 = newRow.insertCell(1);
+
+            cell1.innerText = data.username;
+            cell2.innerText = formData.get("email");
+        }
+    })
+    .catch(error => console.error("Error:", error));
+});
+</script>
+
+   
+</ul>
+</body>
+</html>
