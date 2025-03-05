@@ -6,7 +6,7 @@ class PropertyForm(ModelForm):
     class Meta:
         model = Property
         fields = '__all__'
-        exclude =["property_id"]
+        exclude =["id"]
         widgets = {
             'tags':forms.CheckboxSelectMultiple()
         }
@@ -22,7 +22,7 @@ class PropertyUnitForm(ModelForm):
     class Meta:
         model= Property_Unit
         field="__all__"
-        exclude = ["unit_id"]
+        exclude = ["id"]
         widgets = {
             'tags': forms.CheckboxSelectMultiple()
         }
@@ -38,8 +38,11 @@ class LeaseAgreementForm(ModelForm):
     class Meta:
         model= Lease_Agreement
         field= "__all__"
-        exclude = ["agreement_id"]
+        exclude = ["id"]
         widgets = {
+            'start_date': forms.DateInput(attrs={'type': 'date'}),
+            'end_date': forms.DateInput(attrs={'type': 'date'}),
+            'payment_date': forms.DateInput(attrs={'type': 'date'}), 
             'tags': forms.CheckboxSelectMultiple()
         }
 

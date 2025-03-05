@@ -1,0 +1,137 @@
+{% block content %}
+<!-- PROPERTY TABLE -->
+    <h2>Properties   <a href="{% url 'property_create' %}">Create +</a></h2> 
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>State</th>
+                <th>Description</th>
+                <th>Type</th>
+                <th>Size</th>
+                <th>Units</th>
+                <th>Owner</th>
+                <th> </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for property in properties %}
+            <tr>
+                <td>{{property.name}}</td>
+                <td>{{property.address}}</td>
+                <td>{{property.state}}</td>
+                <td>{{property.description}}</td>
+                <td>{{property.type}}</td>
+                <td>{{property.area}}</td>
+                <td>{{property.units}}</td>
+                <td>{{property.owner}}</td>
+                <td>
+                    <a href="{% url 'property_edit' property.id %}">Edit</a>
+                    <a href="{% url 'property_delete' property.id %}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+
+<!-- PROPERTY UNIT TABLE -->
+    <h2>Property Units  <a href="{% url 'property_unit_create' %}"> Create +</a></h2> 
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Property</th>
+                <th>Unit Name</th>
+                <th>Number of rooms</th>
+                <th>Number of bathrooms</th>
+                <th>Rent</th>
+                <th>Furnished</th>
+                <th>Description</th>
+                <th>Available</th>
+                <th> </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for unit in property_units %}
+            <tr>
+                <td>{{ unit.property.name }}</td>
+                <td>{{ unit.name }}</td>
+                <td>{{ unit.number_of_rooms }}</td>
+                <td>{{ unit.number_of_bathrooms }}</td>
+                <td>{{ unit.rent }}</td>
+                <td>{{ unit.furnished }}</td>
+                <td>{{ unit.description }}</td>
+                <td>{{ unit.availablity }}</td>
+                <td>
+                    <a href="{% url 'property_unit_edit' unit.id %}">Edit</a>
+                    <a href="{% url 'property_unit_delete' unit.id %}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+
+<!-- LEASE TABLE -->
+
+<h2>Leases  <a href="{% url 'lease_create' %}">Create +</a></h2> 
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Property</th>
+                <th>Unit</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Payment Date</th>
+                <th>Lease Amount</th>
+                <th>Tenure</th>
+                <th>Security Deposit</th>
+                <th>Owner</th>
+                <th>Tenant</th>
+                <th>Payment Date</th>
+                <th>Penalty</th>
+                <th>Payment Grace Period</th>
+                <th>Owner Contact</th>
+                <th>Tenant Contact</th>
+                <th>Owner email</th>
+                <th>Tenant Email</th>
+                <th>Description</th>
+                <th> </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for lease in lease_agreements %}
+            <tr>
+                <td>{{ lease.unit.property.name }}</td>
+                <td>{{ lease.unit.name }}</td>
+                <td>{{ lease.start_date }}</td>
+                <td>{{ lease.end_date }}</td>
+                <td>{{ lease.payment_date }}</td>
+                <td>{{ lease.rent }}</td>
+                <td>{{ lease.duration }}</td>
+                <td>{{ lease.security_deposit }}</td>
+                <td>{{ lease.owner }}</td>
+                <td>{{ lease.tenant }}</td>
+                <td>{{ lease.payment_date }}</td>
+                <td>{{ lease.late_payment_penalty}}</td>
+                <td>{{ lease.payment_grace_period }}</td>
+                <td>{{ lease.owner_contact }}</td>
+                <td>{{ lease.tenant_contact }}</td>
+                <td>{{ lease.owner_email }}</td>
+                <td>{{ lease.tenant_email }}</td>
+                <td>{{ lease.description }}</td>
+                <td>
+                    <a href="{% url 'lease_edit' lease.id %}">Edit</a>
+                    <a href="{% url 'lease_delete' lease.id %}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}
+    
