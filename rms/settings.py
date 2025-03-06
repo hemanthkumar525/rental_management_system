@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'RealEstate.apps.RealestateConfig'
+    'RealEstate.apps.RealestateConfig',
+    'accounts',
+
 ]
 
 MIDDLEWARE = [
@@ -79,9 +81,9 @@ WSGI_APPLICATION = 'rms.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'rms_db',
+        'NAME': 'rmsdb',
         'USER': 'root',
-        'PASSWORD': 'HarshAgarwal@1234',
+        'PASSWORD': 'vcp5869ms',
         'HOST':'127.0.0.1',
         'PORT':'3306',
     }

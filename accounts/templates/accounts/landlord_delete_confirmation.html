@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Confirm Landlord Deletion</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        .confirmation-container {
+            width: 400px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .confirmation-container h1 {
+            margin-bottom: 20px;
+        }
+        .confirmation-container p {
+            margin-bottom: 20px;
+        }
+        .confirmation-container form {
+            display: inline-block;
+        }
+        .confirmation-container button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .confirm-button {
+            background-color: #f44336;
+            color: white;
+        }
+        .cancel-button {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="confirmation-container">
+        <h1>Confirm Landlord Deletion</h1>
+        <p>Are you sure you want to delete landlord "{{ user.username }}"?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="confirm-button">Confirm</button>
+            <a href="{% url 'accounts:user_list' %}" class="cancel-button">Cancel</a>
+        </form>
+    </div>
+</body>
+</html>

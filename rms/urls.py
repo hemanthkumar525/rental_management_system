@@ -17,8 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 import RealEstate.urls
+import accounts.urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(RealEstate.urls))
+    path('real_estate/', include(RealEstate.urls)), 
+    path('accounts/', include(accounts.urls)),
 ]
