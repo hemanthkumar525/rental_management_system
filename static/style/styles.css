@@ -1,0 +1,372 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Navbar styles */
+.navbar {
+    background: #2c3e50;
+    padding: 1rem 2rem;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+}
+
+.navbar-user {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.user-icon {
+    width: 35px;
+    height: 35px;
+    background: #34495e;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Sidebar styles */
+.sidebar {
+    width: 250px;
+    background: #34495e;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: 5rem;
+}
+
+.menu-item {
+    padding: 1rem 2rem;
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: background 0.3s;
+}
+
+.menu-item:hover {
+    background: #2c3e50;
+}
+
+.menu-item i {
+    width: 20px;
+}
+
+/* Main content area */
+.main-content {
+    margin-left: 250px;
+    padding: 6rem 2rem 2rem 2rem;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 70px;
+    }
+
+    .menu-item span {
+        display: none;
+    }
+
+    .main-content {
+        margin-left: 70px;
+    }
+}
+
+
+
+
+/* Accounts landlord_list.html */
+.landlord-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.landlord-container h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.action-button {
+    padding: 8px 12px;
+    margin: 0 5px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.update-button {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.delete-button {
+    background-color: #f44336;
+    color: white;
+}
+.create-button{
+  background-color: #008CBA;
+  color: white;
+}
+.return-button {
+    background-color: #555;
+    color: white;
+}
+
+.button-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+
+    /* Property.html form */
+    .form-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .form-container h2 {
+        color: #333;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid #4CAF50;
+    }
+
+    form {
+        display: grid;
+        gap: 1.5rem;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    label {
+        font-weight: 500;
+        color: #555;
+        font-size: 0.95rem;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="email"],
+    textarea,
+    select {
+        padding: 0.8rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 1rem;
+        transition: border-color 0.3s;
+    }
+
+    input[type="file"] {
+        padding: 0.5rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        background: #f8f9fa;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+        outline: none;
+        border-color: #4CAF50;
+        box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.1);
+    }
+
+    input[type="submit"] {
+        background: #4CAF50;
+        color: white;
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 4px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.3s;
+        margin-top: 1rem;
+        width: auto;
+        justify-self: start;
+    }
+
+    input[type="submit"]:hover {
+        background: #45a049;
+    }
+
+    /* Error states */
+    .errorlist {
+        color: #dc3545;
+        list-style: none;
+        padding: 0;
+        margin: 0.2rem 0;
+        font-size: 0.9rem;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+        .form-container {
+            padding: 1rem;
+            margin: 1rem;
+        }
+    }
+
+/* Property_list.html */
+.content-section {
+    margin: 2rem 0;
+    padding: 1rem;
+}
+
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+.property-card, .unit-card, .lease-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.property-card:hover, .unit-card:hover, .lease-card:hover {
+    transform: translateY(-5px);
+}
+
+.card-image {
+    height: 200px;
+    overflow: hidden;
+    border-radius: 8px 8px 0 0;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.no-image {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f5f5f5;
+}
+
+.card-content {
+    padding: 1rem;
+}
+
+.card-content h3 {
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.card-content p {
+    margin: 0.5rem 0;
+    color: #666;
+}
+
+.card-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.edit-btn, .delete-btn {
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+    color: white;
+}
+
+.edit-btn {
+    background: #4CAF50;
+}
+
+.delete-btn {
+    background: #f44336;
+}
+
+.create-btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: #2196F3;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-left: 1rem;
+}
+
+.lease-details {
+    display: grid;
+    gap: 1rem;
+}
+
+.lease-dates, .lease-financials, .lease-parties {
+    padding: 0.5rem;
+    background: #f9f9f9;
+    border-radius: 4px;
+}
+
+.owner-details, .tenant-details {
+    margin-top: 0.5rem;
+}

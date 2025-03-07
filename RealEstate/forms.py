@@ -7,9 +7,7 @@ class PropertyForm(ModelForm):
         model = Property
         fields = '__all__'
         exclude =["id"]
-        widgets = {
-            'tags':forms.CheckboxSelectMultiple()
-        }
+        
 
         def __init__(self, *args, **kwargs):
             super(PropertyForm, self).__init__(*args, **kwargs)
@@ -23,9 +21,7 @@ class PropertyUnitForm(ModelForm):
         model= Property_Unit
         field="__all__"
         exclude = ["id"]
-        widgets = {
-            'tags': forms.CheckboxSelectMultiple()
-        }
+       
 
         def __init__(self, *args, **kwargs):
             super(PropertyUnitForm, self).__init__(*args, **kwargs)

@@ -9,10 +9,11 @@ class LandlordUserForm(forms.ModelForm):
         widgets = {
             'password': forms.PasswordInput(),
         }
-
+        
     def save(self, commit=True):
         user = super(LandlordUserForm, self).save(commit=False)
         password = self.cleaned_data["password"]
+        user.role = "landlord"
         user.set_password(password)
         if commit:
             user.save()
@@ -24,11 +25,14 @@ class TenantUserForm(forms.ModelForm):
         fields = ['username', 'email', 'password', 'first_name', 'last_name', 'phone_number', 'address', 'lease_start_date', 'lease_end_date', 'lease_document']
         widgets = {
             'password': forms.PasswordInput(),
+            'lease_start_date' : forms.DateInput(attrs={'type': 'date'}),
+            'lease_end_date': forms.DateInput(attrs={'type': 'date'})
         }
 
     def save(self, commit=True):
         user = super(TenantUserForm, self).save(commit=False)
         password = self.cleaned_data["password"]
+        user.role = "tenant"
         user.set_password(password)
         if commit:
             user.save()

@@ -67,6 +67,7 @@ def property_unit_edit(request, pk):
         if property_unit_form.is_valid():
             property_unit_form.save()
             return HttpResponse("Property Updated Successfully")
+        
     context = {"property_unit_form":property_unit_form}
     return render(request, "RealEstate\property_unit.html", context)
 

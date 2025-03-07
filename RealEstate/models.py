@@ -11,12 +11,12 @@ class Property(models.Model):
     owner = models.CharField(max_length=100)
     owner_contact = models.IntegerField(blank= False, null = False, default=0)
     owner_email = models.EmailField(max_length=100)
-    image = models.ImageField(upload_to='static/images/', null = True, blank = True)
+    image = models.ImageField(upload_to='images', null = True, blank = True)
     units = models.IntegerField(blank= False, null = False, default=1)
     description = models.TextField(max_length=300, blank = False, null=False, default= "Enter Description", editable= True)
 
     def __str__(self):
-        return f"Property: " + self.name
+        return self.name
 
 
 
@@ -32,7 +32,7 @@ class Property_Unit(models.Model):
     availablity = models.CharField(max_length=100, choices= [("Available","Available"),("Leased","Leased")], default="Available")
     
     def __str__(self):
-        return f"Unit: " + self.name
+        return f"{self.name} - {self.property.name}"
 
 
 
@@ -56,4 +56,4 @@ class Lease_Agreement(models.Model):
     description = models.TextField(max_length=300, blank = False, null=False, default= "Enter Description")
 
     def __str__(self):
-        return f"Lease Agreement between " + self.owner + " and " + self.tenant + " for " + self.unit_id.unit_name + " from" + self.agreement_start_date + " to " + self.agreement_end_date
+        return f"Lease Agreement between " + self.owner + " and " + self.tenant + " for " + self.unit.name + " from" + self.start_date + " to " + self.end_date

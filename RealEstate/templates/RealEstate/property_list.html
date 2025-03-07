@@ -1,137 +1,106 @@
+{% extends 'base.html' %}
+
+{% block title %}Property List{% endblock %}
+
 {% block content %}
-<!-- PROPERTY TABLE -->
-    <h2>Properties   <a href="{% url 'property_create' %}">Create +</a></h2> 
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Address</th>
-                <th>State</th>
-                <th>Description</th>
-                <th>Type</th>
-                <th>Size</th>
-                <th>Units</th>
-                <th>Owner</th>
-                <th> </th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for property in properties %}
-            <tr>
-                <td>{{property.name}}</td>
-                <td>{{property.address}}</td>
-                <td>{{property.state}}</td>
-                <td>{{property.description}}</td>
-                <td>{{property.type}}</td>
-                <td>{{property.area}}</td>
-                <td>{{property.units}}</td>
-                <td>{{property.owner}}</td>
-                <td>
-                    <a href="{% url 'property_edit' property.id %}">Edit</a>
-                    <a href="{% url 'property_delete' property.id %}">Delete</a>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+<!-- PROPERTY CARDS -->
+<div class="content-section">
+    <h2>Properties <a href="{% url 'property_create' %}" class="create-btn">Create +</a></h2> 
+    <div class="card-container">
+        {% for property in properties %}
+        <div class="property-card">
+            <div class="card-image">
+                {% if property.image %}
+                    <img src="{{ property.image.url }}" alt="{{ property.name }}">
+                {% else %}
+                    <div class="no-image">No image available</div>
+                {% endif %}
+            </div>
+            <div class="card-content">
+                <h3>{{property.name}}</h3>
+                <p><strong>Address:</strong> {{property.address}}</p>
+                <p><strong>State:</strong> {{property.state}}</p>
+                <p><strong>Type:</strong> {{property.type}}</p>
+                <p><strong>Size:</strong> {{property.area}} sqft</p>
+                <p><strong>Units:</strong> {{property.units}}</p>
+                <p><strong>Owner:</strong> {{property.owner}}</p>
+                <p><strong>Description:</strong> {{property.description}}</p>
+                <div class="card-actions">
+                    <a href="{% url 'property_edit' property.id %}" class="edit-btn">Edit</a>
+                    <a href="{% url 'property_delete' property.id %}" class="delete-btn">Delete</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
 
+<!-- PROPERTY UNIT CARDS -->
+<div class="content-section">
+    <h2>Property Units <a href="{% url 'property_unit_create' %}" class="create-btn">Create +</a></h2> 
+    <div class="card-container">
+        {% for unit in property_units %}
+        <div class="unit-card">
+            <div class="card-content">
+                <h3>{{unit.name}}</h3>
+                <p><strong>Property:</strong> {{unit.property.name}}</p>
+                <p><strong>Rooms:</strong> {{unit.number_of_rooms}}</p>
+                <p><strong>Bathrooms:</strong> {{unit.number_of_bathrooms}}</p>
+                <p><strong>Rent:</strong> ₹{{unit.rent}}</p>
+                <p><strong>Furnished:</strong> {{unit.furnished|yesno:"Yes,No"}}</p>
+                <p><strong>Status:</strong> {{unit.availablity}}</p>
+                <p><strong>Description:</strong> {{unit.description}}</p>
+                <div class="card-actions">
+                    <a href="{% url 'property_unit_edit' unit.id %}" class="edit-btn">Edit</a>
+                    <a href="{% url 'property_unit_delete' unit.id %}" class="delete-btn">Delete</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
 
-
-<!-- PROPERTY UNIT TABLE -->
-    <h2>Property Units  <a href="{% url 'property_unit_create' %}"> Create +</a></h2> 
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Property</th>
-                <th>Unit Name</th>
-                <th>Number of rooms</th>
-                <th>Number of bathrooms</th>
-                <th>Rent</th>
-                <th>Furnished</th>
-                <th>Description</th>
-                <th>Available</th>
-                <th> </th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for unit in property_units %}
-            <tr>
-                <td>{{ unit.property.name }}</td>
-                <td>{{ unit.name }}</td>
-                <td>{{ unit.number_of_rooms }}</td>
-                <td>{{ unit.number_of_bathrooms }}</td>
-                <td>{{ unit.rent }}</td>
-                <td>{{ unit.furnished }}</td>
-                <td>{{ unit.description }}</td>
-                <td>{{ unit.availablity }}</td>
-                <td>
-                    <a href="{% url 'property_unit_edit' unit.id %}">Edit</a>
-                    <a href="{% url 'property_unit_delete' unit.id %}">Delete</a>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
-
-
-<!-- LEASE TABLE -->
-
-<h2>Leases  <a href="{% url 'lease_create' %}">Create +</a></h2> 
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Property</th>
-                <th>Unit</th>
-                <th>Start Date</th>
-                <th>End Date</th>
-                <th>Payment Date</th>
-                <th>Lease Amount</th>
-                <th>Tenure</th>
-                <th>Security Deposit</th>
-                <th>Owner</th>
-                <th>Tenant</th>
-                <th>Payment Date</th>
-                <th>Penalty</th>
-                <th>Payment Grace Period</th>
-                <th>Owner Contact</th>
-                <th>Tenant Contact</th>
-                <th>Owner email</th>
-                <th>Tenant Email</th>
-                <th>Description</th>
-                <th> </th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for lease in lease_agreements %}
-            <tr>
-                <td>{{ lease.unit.property.name }}</td>
-                <td>{{ lease.unit.name }}</td>
-                <td>{{ lease.start_date }}</td>
-                <td>{{ lease.end_date }}</td>
-                <td>{{ lease.payment_date }}</td>
-                <td>{{ lease.rent }}</td>
-                <td>{{ lease.duration }}</td>
-                <td>{{ lease.security_deposit }}</td>
-                <td>{{ lease.owner }}</td>
-                <td>{{ lease.tenant }}</td>
-                <td>{{ lease.payment_date }}</td>
-                <td>{{ lease.late_payment_penalty}}</td>
-                <td>{{ lease.payment_grace_period }}</td>
-                <td>{{ lease.owner_contact }}</td>
-                <td>{{ lease.tenant_contact }}</td>
-                <td>{{ lease.owner_email }}</td>
-                <td>{{ lease.tenant_email }}</td>
-                <td>{{ lease.description }}</td>
-                <td>
-                    <a href="{% url 'lease_edit' lease.id %}">Edit</a>
-                    <a href="{% url 'lease_delete' lease.id %}">Delete</a>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
+<!-- LEASE CARDS -->
+<div class="content-section">
+    <h2>Leases <a href="{% url 'lease_create' %}" class="create-btn">Create +</a></h2> 
+    <div class="card-container">
+        {% for lease in lease_agreements %}
+        <div class="lease-card">
+            <div class="card-content">
+                <h3>{{lease.unit.property.name}} - {{lease.unit.name}}</h3>
+                <div class="lease-details">
+                    <div class="lease-dates">
+                        <p><strong>Start Date:</strong> {{lease.start_date}}</p>
+                        <p><strong>End Date:</strong> {{lease.end_date}}</p>
+                        <p><strong>Payment Date:</strong> {{lease.payment_date}}</p>
+                    </div>
+                    <div class="lease-financials">
+                        <p><strong>Rent Amount:</strong> ₹{{lease.rent}}</p>
+                        <p><strong>Security Deposit:</strong> ₹{{lease.security_deposit}}</p>
+                        <p><strong>Penalty:</strong> ₹{{lease.late_payment_penalty}}</p>
+                    </div>
+                    <div class="lease-parties">
+                        <div class="owner-details">
+                            <p><strong>Owner:</strong> {{lease.owner}}</p>
+                            <p><strong>Contact:</strong> {{lease.owner_contact}}</p>
+                            <p><strong>Email:</strong> {{lease.owner_email}}</p>
+                        </div>
+                        <div class="tenant-details">
+                            <p><strong>Tenant:</strong> {{lease.tenant}}</p>
+                            <p><strong>Contact:</strong> {{lease.tenant_contact}}</p>
+                            <p><strong>Email:</strong> {{lease.tenant_email}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-actions">
+                    <a href="{% url 'lease_edit' lease.id %}" class="edit-btn">Edit</a>
+                    <a href="{% url 'lease_delete' lease.id %}" class="delete-btn">Delete</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
 
 {% endblock %}
     

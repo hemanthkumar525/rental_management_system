@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
 
-{% block title %}Property Unit Create{% endblock %}
+{% block title %}Landlord{% endblock %}
 {% block content %}
 <div class="form-container">
-    <h2>Property Unit Creation</h2>
+    <a href = "{% url 'accounts:users_list' %}">Go Back</a>
+    <h2>Landlord</h2>
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        {% for field in property_unit_form %}
+        {% for field in form %}
             <div class="form-group">
                 <label for="{{ field.id_for_label }}">{{ field.label }}</label>
                 {{ field }}
@@ -19,7 +20,7 @@
                 {% endif %}
             </div>
         {% endfor %}
-        <input type="submit" value="Save Property Unit">
+        <input type="submit" value="Save Landlord">
     </form>
 </div>
 {% endblock %}

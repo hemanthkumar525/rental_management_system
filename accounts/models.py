@@ -1,4 +1,5 @@
 from django.db import models
+from uuid import uuid4
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
@@ -26,10 +27,10 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser):
     ROLE_CHOICES = (
-        ('superadmin', 'Super Admin'),
         ('landlord', 'Landlord'),
         ('tenant', 'Tenant'),
     )
+    id = models.UUIDField(primary_key=True, default=uuid4, editable = False, null= False)
     username = models.CharField(max_length=150, unique=True)
     email = models.EmailField(unique=True)
     first_name = models.CharField(max_length=30, blank=True)

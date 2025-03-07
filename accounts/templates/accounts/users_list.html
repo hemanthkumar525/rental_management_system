@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}Users List{% endblock %}
+
+{% block content %}
+<!-- Landlords Table -->
+<div class="content-section">
+    <h2>Landlords <a href="{% url 'accounts:landlord_create' %}" class="create-btn">Create +</a></h2> 
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Address</th>
+                <th>Contact Information</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for landlord in landlords %}
+            <tr>
+                <td>{{landlord.username}}</td>
+                <td>{{landlord.email}}</td>
+                <td>{{landlord.phone_number}}</td>
+                <td>{{landlord.address}}</td>
+                <td>{{landlord.contact_information}}</td>
+                <td>{{landlord.is_active|yesno:"Active,Inactive"}}</td>
+                <td>
+                    <a href="{% url 'accounts:landlord_update' landlord.id %}" class="edit-btn">Edit</a>
+                    <a href="{% url 'accounts:landlord_delete' landlord.id %}" class="delete-btn">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Tenants Table -->
+<div class="content-section">
+    <h2>Tenants <a href="{% url 'accounts:tenant_create' %}" class="create-btn">Create +</a></h2> 
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Address</th>
+                <th>Contact Information</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for tenant in tenants %}
+            <tr>
+                <td>{{tenant.username}}</td>
+                <td>{{tenant.email}}</td>
+                <td>{{tenant.phone_number}}</td>
+                <td>{{tenant.address}}</td>
+                <td>{{tenant.contact_information}}</td>
+                <td>{{tenant.is_active|yesno:"Active,Inactive"}}</td>
+                <td>
+                    <a href="{% url 'accounts:tenant_update' tenant.id %}" class="edit-btn">Edit</a>
+                    <a href="{% url 'accounts:tenant_delete' tenant.id %}" class="delete-btn">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
