@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Rental Management System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background: url('/path-to-your-image.jpg') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        
+        /* Adding an overlay effect to the background */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(40, 52, 71, 0.8); /* Dark blue overlay */
+            z-index: 1;
+        }
+        
+        /* Login Container */
+        .login-container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 350px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Title Styling */
+        .login-container h2 {
+            margin-bottom: 20px;
+            color: #495057;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        /* Input Fields */
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        
+        .input-group label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+            color: #495057;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .input-group input:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+        
+        /* Login Button */
+        .login-button {
+            background-color: #6f42c1; /* Purple shade similar to the image */
+            color: white;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background 0.3s ease-in-out;
+        }
+        
+        .login-button:hover {
+            background-color: #563d7c;
+        }
+        
+        /* Register and Forgot Password Links */
+        .register-link {
+            margin-top: 15px;
+            display: block;
+            font-size: 14px;
+        }
+        
+        .register-link a {
+            color: #6f42c1;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Icons for Forgot Password */
+        .register-link i {
+            margin-right: 5px;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>Login</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit" class="login-button">Login</button>
+        </form>
+        </div>
+
+</body>
+</html>
