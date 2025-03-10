@@ -18,17 +18,11 @@ from django.contrib import admin
 from django.urls import path, include
 import RealEstate.urls
 import accounts.urls
-import Superadmin.urls
-from .views import *
 from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index, name='index'),
-    path('superadmin/', include(Superadmin.urls)),
-    path('login/', login_view, name='login'),
-    path('logout/', logout_view, name='logout'),
     path('real_estate/', include(RealEstate.urls)), 
     path('accounts/', include(accounts.urls)),
 ]
