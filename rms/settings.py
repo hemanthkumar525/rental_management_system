@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'Superadmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -83,8 +84,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'rms_db',
         'USER': 'root',
-        'PASSWORD': 'HarshAgarwal@1234',
-        'HOST':'127.0.0.1',
+        'PASSWORD': '123456',
+        'HOST':'127.0.0.2',
         'PORT':'3306',
     }
 }
